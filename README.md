@@ -1,69 +1,111 @@
-# React + TypeScript + Vite
+# 🧹 Cleanup Software – Role-Based Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, scalable **Admin Dashboard** built with **React, TypeScript, Redux Toolkit, ShadCN UI**, and **React Router**, featuring secure multi-role access (Client, Admin, User), reusable UI components, and clean code architecture.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo  
+🔗 **Live URL:** https://cleanuppro-naim.netlify.app  
+🔗 **GitHub Repo:** https://github.com/naimsheikh8020/CleanupSoftware
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔑 Demo Login Credentials
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Email: admin@gmail.com
+Password: 123
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+markdown
+Copy code
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Features
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### ✅ Role-Based Access System
+- Admin dashboard  
+- Client dashboard  
+- User dashboard  
+- Protected routes  
+- Dynamic sidebar based on role  
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### ✅ Reusable ShadCN UI Components
+- Add / Edit modal  
+- Delete confirmation modal  
+- View details modal  
+- Filter modal  
+- Status update modal  
+
+### ✅ Strong Redux Toolkit Architecture
+- Global authentication state  
+- UI state management  
+- Type-safe slices  
+- Organized and scalable structure  
+
+### ✅ Clean & Modular Codebase
+- TypeScript strict typing  
+- Reusable components  
+- Modern UI  
+- Production-ready patterns  
+
+---
+
+## 🏗️ Tech Stack
+
+- **React**
+- **TypeScript**
+- **Redux Toolkit**
+- **ShadCN UI**
+- **Tailwind CSS**
+- **React Router**
+- **Netlify Deployment**
+
+---
+
+## 📂 Folder Structure
+
+src/
+app/
+store.ts
+features/
+auth/
+authSlice.ts
+components/
+ui/
+common/
+pages/
+Admin/
+Client/
+User/
+routes/
+ProtectedRoute.tsx
+RoleBasedRoute.tsx
+
+yaml
+Copy code
+
+---
+
+## 🖼️ Screenshots
+
+### 🔹 Dashboard  
+![Screenshot 1](https://raw.githubusercontent.com/naimsheikh8020/CleanupSoftware/main/clean%20up%20pro.png)
+
+### 🔹 Sidebar & Layout  
+![Screenshot 2](https://raw.githubusercontent.com/naimsheikh8020/CleanupSoftware/main/clean%20up%20pro%202.png)
+
+### 🔹 Table + Actions  
+![Screenshot 3](https://raw.githubusercontent.com/naimsheikh8020/CleanupSoftware/main/clean%20up%20pro%203.png)
+
+### 🔹 Modal View  
+![Screenshot 4](https://raw.githubusercontent.com/naimsheikh8020/CleanupSoftware/main/cleanpro%204.png)
+
+---
+
+## 📦 Installation & Setup
+
+```bash
+git clone https://github.com/naimsheikh8020/CleanupSoftware
+cd CleanupSoftware
+npm install
+npm run dev
