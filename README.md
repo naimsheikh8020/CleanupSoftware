@@ -102,10 +102,3 @@ Copy code
 
 ---
 
-## 📦 Installation & Setup
-
-```bash
-git clone https://github.com/naimsheikh8020/CleanupSoftware
-cd CleanupSoftware
-npm install
-npm run dev
