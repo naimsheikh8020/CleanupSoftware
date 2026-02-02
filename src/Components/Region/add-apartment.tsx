@@ -7,8 +7,6 @@ import {
 } from "@/Components/ui/dialog";
 import { Button } from "../ui/button";
 import { useState, useEffect, useCallback } from "react";
-import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
-import CustomMarker from "../map/CustomMarker";
 import type { LatLng } from "@/Types/map.types";
 import type { Building } from "@/Types/building.types";
 import { useGetSearchClientsQuery } from "@/redux/features/admin/users/clients.api";
@@ -17,6 +15,8 @@ import {
   useGetBuilidingBySearchQuery,
 } from "@/redux/features/admin/buildings/building.api";
 import { toast } from "sonner";
+import { Map, MapMarker, MarkerContent } from "../ui/map";
+import FlyToLocation from "../map/fly-to-location";
 
 type Client = {
   id: number;
@@ -148,11 +148,14 @@ export default function AddApartment() {
   const [showClientDropdown, setShowClientDropdown] = useState(false);
 
   const [searchBuilding, setSearchBuilding] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState<Building | null>(null);
+  const [selectedBuilding, setSelectedBuilding] = useState<Building | null>(
+    null,
+  );
   const [showBuildingDropdown, setShowBuildingDropdown] = useState(false);
 
   const [location, setLocation] = useState<LatLng | null>(null);
-  const [formData, setFormData] = useState<ApartmentFormData>(INITIAL_FORM_DATA);
+  const [formData, setFormData] =
+    useState<ApartmentFormData>(INITIAL_FORM_DATA);
 
   const { data: clientsData } = useGetSearchClientsQuery(searchClient, {
     skip: searchClient.length < 2,
@@ -217,15 +220,16 @@ export default function AddApartment() {
     if (!value) setSelectedBuilding(null);
   }, []);
 
-  const handleChange = useCallback((
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, type, value, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  }, []);
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const { name, type, value, checked } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    },
+    [],
+  );
 
   const resetForm = useCallback(() => {
     setFormData(INITIAL_FORM_DATA);
@@ -311,7 +315,9 @@ export default function AddApartment() {
                 placeholder="Search by name or email..."
                 renderItem={(client) => (
                   <>
-                    <div className="font-medium text-gray-900">{client.name}</div>
+                    <div className="font-medium text-gray-900">
+                      {client.name}
+                    </div>
                     <div className="text-sm text-gray-500">{client.email}</div>
                   </>
                 )}
@@ -330,7 +336,9 @@ export default function AddApartment() {
                 placeholder="Search by location or name..."
                 renderItem={(building) => (
                   <>
-                    <div className="font-medium text-gray-900">{building.name}</div>
+                    <div className="font-medium text-gray-900">
+                      {building.name}
+                    </div>
                     <div className="text-sm text-gray-500">
                       {building.location}, {building.city}
                     </div>
@@ -386,14 +394,14 @@ export default function AddApartment() {
                   placeholder="e.g. 3"
                 />
               </div>
-                <FormInput
-                  label="Bathrooms"
-                  name="bathrooms"
-                  type="number"
-                  value={formData.bathrooms}
-                  onChange={handleChange}
-                  placeholder="e.g. 1"
-                />
+              <FormInput
+                label="Bathrooms"
+                name="bathrooms"
+                type="number"
+                value={formData.bathrooms}
+                onChange={handleChange}
+                placeholder="e.g. 1"
+              />
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -404,10 +412,10 @@ export default function AddApartment() {
                 />
                 <label className="text-sm text-gray-700">Outdoor area</label>
               </div>
-              </div>
+            </div>
             {/* Map */}
             <div className="w-full h-48 md:h-full rounded-md border border-gray-300 overflow-hidden">
-              <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+              {/* <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
                 <Map
                   defaultZoom={12}
                   defaultCenter={location || DEFAULT_MAP_CENTER}
@@ -421,10 +429,23 @@ export default function AddApartment() {
                     </AdvancedMarker>
                   )}
                 </Map>
-              </APIProvider>
+              </APIProvider> */}
+              <Map
+                center={location || DEFAULT_MAP_CENTER}
+                zoom={12}
+                style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+              >
+                <FlyToLocation location={location || undefined} />
+                {location && (
+                  <MapMarker longitude={location.lng} latitude={location.lat}>
+                    <MarkerContent>
+                      <div className="size-4 rounded-full bg-primary border-2 border-white shadow-lg" />
+                    </MarkerContent>
+                  </MapMarker>
+                )}
+              </Map>
             </div>
-            </div>
-
+          </div>
 
           {/* Footer */}
           <div className="border-t border-gray-200 pt-4 px-6 flex justify-end gap-3">
@@ -435,6 +456,5 @@ export default function AddApartment() {
         </form>
       </DialogContent>
     </Dialog>
-
   );
 }
