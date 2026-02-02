@@ -6,14 +6,15 @@ import {
   DialogTrigger,
 } from "@/Components/ui/dialog";
 import { Button } from "../ui/button";
-import { useState, useEffect, useCallback } from "react";
-import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
-import CustomMarker from "./CustomMarker";
+import { useState, useEffect, useCallback, useRef } from "react";
 import type { LatLng } from "@/Types/map.types";
-import { Plus } from "lucide-react";
+import { MapPin, Plus } from "lucide-react";
 import { useCreateBuildingMutation } from "@/redux/features/admin/buildings/building.api";
 import { toast } from "sonner";
 import { useSearchRegionQuery } from "@/redux/features/admin/regions/regions.api";
+import { Map, MapMarker, MarkerContent } from "../ui/map";
+import { getAddressFromCoordinates } from "./geocoding-service";
+import { MapClickHandler } from "./on-map-click";
 
 type Region = {
   id: number;
@@ -46,8 +47,6 @@ const BUILDING_TYPES = [
   { value: "residential", label: "Residential" },
   { value: "commercial", label: "Commercial" },
 ];
-
-// Searchable Dropdown Component
 interface SearchDropdownProps {
   label: string;
   value: string;
@@ -114,6 +113,7 @@ interface FormInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
+   autoExpand?: boolean;
 }
 
 function FormInput({
@@ -124,47 +124,43 @@ function FormInput({
   onChange,
   placeholder,
   required = false,
+  autoExpand = false,
 }: FormInputProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (autoExpand && textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + "px";
+    }
+  }, [value, autoExpand]);
   return (
     <div>
       <label className="block text-sm font-medium text-gray-700 mb-1">
         {label} {required && "*"}
       </label>
-      <input
-        type={type}
-        name={name}
-        value={value ?? ""}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-      />
+      {autoExpand ? (
+        <textarea
+          name={name}
+          value={value ?? ""}
+          onChange={onChange}
+          placeholder={placeholder}
+          ref={textareaRef}
+          className="block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none overflow-hidden"
+        />
+      ) : (
+        <input
+          type={type}
+          name={name}
+          value={value ?? ""}
+          onChange={onChange}
+          placeholder={placeholder}
+          className="block w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      )}
     </div>
   );
-}
-
-// Geocoding Service
-class GeocodingService {
-  private static apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-
-  static async getAddressFromCoordinates(
-    lat: number,
-    lng: number
-  ): Promise<string> {
-    try {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${this.apiKey}`
-      );
-      const data = await response.json();
-
-      if (data.results && data.results.length > 0) {
-        return data.results[0].formatted_address;
-      }
-      return "";
-    } catch (error) {
-      console.error("Error fetching address:", error);
-      return "";
-    }
-  }
 }
 
 export default function AddBuilding() {
@@ -209,7 +205,7 @@ export default function AddBuilding() {
         [name]: value,
       }));
     },
-    []
+    [],
   );
 
   const handleRegionSelect = useCallback((region: Region) => {
@@ -231,8 +227,8 @@ export default function AddBuilding() {
   }, []);
 
   const handleMapClick = useCallback(async (e: any) => {
-    const lat = e.detail.latLng.lat;
-    const lng = e.detail.latLng.lng;
+    const lat = e.lat;
+    const lng = e.lng;
 
     setLocation({ lat, lng });
     setFormData((prev) => ({
@@ -242,11 +238,13 @@ export default function AddBuilding() {
     }));
 
     // Fetch and set address
-    const address = await GeocodingService.getAddressFromCoordinates(lat, lng);
+    const address = await getAddressFromCoordinates(lat, lng);
+    //  console.log("Fetched address:", address);
     if (address) {
       setFormData((prev) => ({
         ...prev,
-        location: address,
+        location: address.address,
+        city: address.city,
       }));
     }
   }, []);
@@ -365,6 +363,7 @@ export default function AddBuilding() {
                 onChange={handleChange}
                 placeholder="Click on map to set location"
                 required
+                autoExpand
               />
 
               <div className="grid grid-cols-2 gap-4">
@@ -387,7 +386,7 @@ export default function AddBuilding() {
 
             {/* Right side map */}
             <div className="w-full h-[500px] rounded-md border border-gray-300 overflow-hidden">
-              <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+              {/* <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
                 <Map
                   defaultZoom={12}
                   defaultCenter={location}
@@ -402,7 +401,32 @@ export default function AddBuilding() {
                     </AdvancedMarker>
                   )}
                 </Map>
-              </APIProvider>
+              </APIProvider> */}
+              <Map
+                center={location || DEFAULT_MAP_CENTER}
+                zoom={12}
+                style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json"
+                //  onclick={handleMapClick}
+              >
+                <MapClickHandler
+                  onSelect={setLocation}
+                  onPress={handleMapClick}
+                />
+                {/* <FlyToLocation location={location || undefined} /> */}
+                {location && (
+                  <MapMarker
+                    //   draggable
+                    //   onDrag={handleMapClick}
+                    longitude={location.lng}
+                    latitude={location.lat}
+                  >
+                    <MarkerContent>
+                      {/* <div className="size-4 rounded-full bg-primary border-2 border-white shadow-lg" /> */}
+                      <MapPin fill="blue" color="blue" />
+                    </MarkerContent>
+                  </MapMarker>
+                )}
+              </Map>
             </div>
           </div>
 

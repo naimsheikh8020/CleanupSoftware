@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetBuildingsByRegionQuery } from "@/redux/features/admin/buildings/building.api";
 import { useGetregionsQuery } from "@/redux/features/admin/regions/regions.api";
-import { LayerMarkersExample } from "@/Components/map/mapcn";
+import { LayerMarkers } from "@/Components/map/mapcn";
 
 interface Apartment {
   id: number;
@@ -85,7 +85,7 @@ const MapRegionOverview = () => {
           )}
 
           <div className="bg-white rounded-lg border overflow-hidden">
-            <div className="max-h-[680px] overflow-y-auto">
+            <div className="h-full overflow-y-auto">
               {loadingRegions ? (
                 <div className="p-4 text-gray-500 text-sm">Loading regions...</div>
               ) : filteredRegions.length === 0 ? (
@@ -107,9 +107,9 @@ const MapRegionOverview = () => {
 
         {/* Main Map Area */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg border p-4 h-[680px] relative">
+          <div className="bg-white rounded-lg border p-4 h-[700px] relative">
             {/* <MyMap /> */}
-            <LayerMarkersExample />
+            <LayerMarkers />
           </div>
         </div>
       </div>

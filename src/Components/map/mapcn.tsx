@@ -2,7 +2,7 @@ import { Map, MapControls } from "../ui/map";
 import { useGetBuildingCoordinatesQuery } from "@/redux/features/admin/buildings/building.api";
 import MarkersLayer from "./marker";
 
-export function LayerMarkersExample() {
+export function LayerMarkers() {
   const riyadh = { lat: 24.7136, lng: 46.6753 };
   const { data, isSuccess } = useGetBuildingCoordinatesQuery(undefined);
 
@@ -18,7 +18,7 @@ export function LayerMarkersExample() {
     : null;
 
   return (
-    <div className="h-[650px] w-full">
+    <div className="h-full w-full">
       <Map
         center={riyadh}
         zoom={11}
