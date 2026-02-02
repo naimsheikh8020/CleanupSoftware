@@ -1,8 +1,7 @@
 import { useState } from "react";
-import WholeMap from "@/Components/map/WholeMap";
 import { useGetBuildingsByRegionQuery } from "@/redux/features/admin/buildings/building.api";
 import { useGetregionsQuery } from "@/redux/features/admin/regions/regions.api";
-import RegionsHierarchy from "./region/region-dummy";
+import { LayerMarkersExample } from "@/Components/map/mapcn";
 
 interface Apartment {
   id: number;
@@ -60,16 +59,15 @@ const MapRegionOverview = () => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <RegionsHierarchy />
-      </div>
+      </div> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Sidebar with Regions & Buildings List */}
         <div className="lg:col-span-1">
           <h2 className="text-base font-semibold mb-3">Regions & Buildings</h2>
 
-          {/* 🔍 Search Bar */}
           <div className="mb-3">
             <input
               type="text"
@@ -110,7 +108,8 @@ const MapRegionOverview = () => {
         {/* Main Map Area */}
         <div className="lg:col-span-2">
           <div className="bg-white rounded-lg border p-4 h-[680px] relative">
-            <WholeMap />
+            {/* <MyMap /> */}
+            <LayerMarkersExample />
           </div>
         </div>
       </div>

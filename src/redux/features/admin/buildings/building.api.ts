@@ -6,12 +6,14 @@ export const buildingApi = baseApi.injectEndpoints({
       query: () => "/locations/overview/",
       providesTags: ["Building"],
     }),
-
     getBuildings: builder.query({
       query: (page = 1) => `/buildings/?page=${page}`,
       providesTags: ["Building"],
     }),
-
+    getBuildingCoordinates: builder.query({
+      query: () => "/map/data/",
+      providesTags: ["Building"],
+    }),
     getBuilidingBySearch: builder.query({
       query: (search: string) => ({
         url: "/buildings/",
@@ -19,7 +21,6 @@ export const buildingApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Building"],
     }),
-
     getBuildingById: builder.query({
       query: (id) => `/buildings/${id}`,
       providesTags: (id) => [{ type: "Building", id }],
@@ -28,12 +29,10 @@ export const buildingApi = baseApi.injectEndpoints({
       query: (region) => `/buildings/region/${region}`,
       providesTags: ["Building"],
     }),
-
     getApartments: builder.query({
       query: (buildingId) => `/apartments/?building_id=${buildingId}`,
       providesTags: ["Apartment"],
     }),
-
     createBuilding: builder.mutation({
       query: (data) => ({
         url: "/buildings/",
@@ -42,7 +41,6 @@ export const buildingApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Building"],
     }),
-
     updateBuilding: builder.mutation({
       query: ({ id, data }) => ({
         url: `/buildings/${id}/`,
@@ -51,7 +49,6 @@ export const buildingApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Building", "Apartment"],
     }),
-
     deleteBuilding: builder.mutation({
       query: (id) => ({
         url: `/buildings/${id}/`,
@@ -72,6 +69,7 @@ export const buildingApi = baseApi.injectEndpoints({
 
 export const {
   useGetBuildingsQuery,
+  useGetBuildingCoordinatesQuery,
   useGetBuildingByIdQuery,
   useCreateBuildingMutation,
   useUpdateBuildingMutation,
