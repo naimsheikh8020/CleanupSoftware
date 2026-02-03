@@ -29,4 +29,5 @@ EXPOSE 6868
 # Run the preview command
 # We use --host 0.0.0.0 to make it accessible outside the container
 # and --port 6868 to match the project's config
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "6868"]
+# CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "6868"]
+CMD ["npm", "run", "preview"]
