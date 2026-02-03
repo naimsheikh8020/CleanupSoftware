@@ -11,7 +11,7 @@ import {
   DialogFooter,
 } from "@/Components/ui/dialog";
 import { Textarea } from "@/Components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@/Components/ui/separator";
 import { useSelector } from "react-redux";
 import {
   useGetEmployeesPageQuery,

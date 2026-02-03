@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Trash2, Plus } from "lucide-react";
 import { Label } from "@/Components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import {
   Select,
   SelectContent,
@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { Switch } from "@/Components/ui/switch";
 import { Textarea } from "@/Components/ui/textarea";
 import {

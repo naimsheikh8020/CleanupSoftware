@@ -25,7 +25,7 @@ import {
 } from "@/Components/ui/alert-dialog";
 import { toast } from "sonner";
 import { Switch } from "@/Components/ui/switch";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import ClientDetails from "./client-detail";
 import EditClient from "./update-client";
 import ErrorComponent from "@/Components/Error";

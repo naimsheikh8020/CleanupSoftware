@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router";
 import { AppSidebar } from "./Components/app-sidebar";
-import { Separator } from "./components/ui/separator";
+import { Separator } from "./Components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import man from "../../assets/Image/Heart.png";
-import vector from "../../assets/Image/Vector.png";
+import vector from "../../assets/Image/vector.png";
 import vector1 from "../../assets/Image/Vector (1).png";
 import house from "../../assets/Image/solar_card-outline.png";
 import { useGetAdminDashboardQuery } from "@/redux/features/admin/dashboard/dashboard.api";
@@ -94,33 +94,33 @@ export default function DashboardStats() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {isLoading
           ? Array.from({ length: 4 }).map((_, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl p-6 shadow border border-gray-200 animate-pulse"
-              >
-                <div className="w-12 h-12 bg-gray-100 rounded-full" />
-                <div className="h-4 w-28 bg-gray-100 rounded mt-3" />
-                <div className="h-6 w-16 bg-gray-100 rounded mt-2" />
-              </div>
-            ))
+            <div
+              key={i}
+              className="bg-white rounded-xl p-6 shadow border border-gray-200 animate-pulse"
+            >
+              <div className="w-12 h-12 bg-gray-100 rounded-full" />
+              <div className="h-4 w-28 bg-gray-100 rounded mt-3" />
+              <div className="h-6 w-16 bg-gray-100 rounded mt-2" />
+            </div>
+          ))
           : cards.map((c) => (
-              <div
-                key={c.id}
-                className="bg-white flex justify-between items-center rounded-xl p-5 shadow border border-gray-200 hover:shadow-md transition-all duration-300"
-              >
-                <div>
-                  <h3 className="text-gray-500 text-sm sm:text-base">{c.title}</h3>
-                  <p className="text-xl sm:text-2xl font-bold mt-1">{c.value}</p>
-                </div>
-                <div>
-                  <img
-                    src={c.icon}
-                    alt={c.title}
-                    className="w-10 h-10 sm:w-12 sm:h-12 bg-[#EFF5FF] p-2 sm:p-3 rounded-full"
-                  />
-                </div>
+            <div
+              key={c.id}
+              className="bg-white flex justify-between items-center rounded-xl p-5 shadow border border-gray-200 hover:shadow-md transition-all duration-300"
+            >
+              <div>
+                <h3 className="text-gray-500 text-sm sm:text-base">{c.title}</h3>
+                <p className="text-xl sm:text-2xl font-bold mt-1">{c.value}</p>
               </div>
-            ))}
+              <div>
+                <img
+                  src={c.icon}
+                  alt={c.title}
+                  className="w-10 h-10 sm:w-12 sm:h-12 bg-[#EFF5FF] p-2 sm:p-3 rounded-full"
+                />
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );

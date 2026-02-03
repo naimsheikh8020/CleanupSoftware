@@ -24,8 +24,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/Components/ui/table";
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
+import { Separator } from '@/Components/ui/separator';
+import { Button } from '@/Components/ui/button';
 
 interface ClientDetailsProps {
   client: any;

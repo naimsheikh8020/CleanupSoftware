@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow
-} from "@/components/ui/table";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "@/Components/ui/table";
+import { Card } from "@/Components/ui/card";
+import { Button } from "@/Components/ui/button";
 import {
   useGetChatHistoryQuery,
   useLazyGetChatMessagesQuery,

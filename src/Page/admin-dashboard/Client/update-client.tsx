@@ -20,9 +20,9 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useUpdateClientMutation } from "@/redux/features/admin/users/clients.api";
 import { Loader2 } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/Components/ui/input';
 import { Switch } from '@/Components/ui/switch';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/Components/ui/button';
 
 interface EditClientProps {
   client: any;

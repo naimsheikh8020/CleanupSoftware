@@ -18,7 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/Components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import UpdateEmployeeModal from "@/Components/UpdateEmployeeModal";
 import type { Employee } from "@/Types/Types";
 import { toast } from "sonner";

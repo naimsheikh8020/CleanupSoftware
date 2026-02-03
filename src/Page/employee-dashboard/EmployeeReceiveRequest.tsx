@@ -5,8 +5,8 @@ import {
   useDeleteClientRequestMutation,
 } from "@/redux/features/Client/Request.api";
 import { useSelector } from "react-redux";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/Components/ui/button";
+import { Input } from "@/Components/ui/input";
 import {
   Select,
   SelectContent,

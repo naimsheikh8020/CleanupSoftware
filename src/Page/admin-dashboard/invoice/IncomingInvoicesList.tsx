@@ -20,7 +20,7 @@ import {
   AlertDialogTrigger,
 } from "../../../Components/ui/alert-dialog";
 import { Download, Trash } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import {
   Table,
   TableBody,

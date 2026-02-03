@@ -5,7 +5,7 @@ import {
   useGetClientSubscriptionsQuery,
 } from "@/redux/features/Client/Request.api";
 import { Loader2, FileText, AlertCircle, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
+} from "@/Components/ui/dialog";
 
 const Requests: React.FC = () => {
   const clientId = useSelector((state: any) => state.auth.user?.id) || 148;

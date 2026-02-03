@@ -9,7 +9,7 @@ import {
   CommandGroup,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/Components/ui/command"
 
 export interface Option {
   value: string

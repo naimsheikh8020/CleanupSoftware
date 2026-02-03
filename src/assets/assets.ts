@@ -5,20 +5,20 @@ import Employess_icon from "./Employees.svg";
 import invoice from "./invoice.svg";
 import map from "./map.svg";
 import notification from "./notification.svg";
-import region from "./region.svg";
+import region from "./Region.svg";
 import report from "./report.svg";
 import service from "./service.svg";
-import setting from "./setting.svg";
+import setting from "./Setting.svg";
 import Avg_Popularity from "./Avg_Popularity.svg";
 import AVG_rating from "./Avg_rating.svg";
 import Total_revenue from "./Total_revenue.svg";
 import total_service from "./total_service.svg";
 import Appertment from "./Appertment.svg";
 // import Appertment from "./Appertment.svg";
-import image1 from "./Home_Image/image-1.png";
-import image2 from "./Home_Image/image-2.png";
-import image3 from "./Home_Image/image-3.png";
-import image4 from "./Home_Image/image-4.png";
+import image1 from "./Home_Image/Image-1.png";
+import image2 from "./Home_Image/Image-2.png";
+import image3 from "./Home_Image/Image-3.png";
+import image4 from "./Home_Image/Image-4.png";
 import Background_Image from "./Home_Image/Background_Image.png";
 import Color_Background_Image from "./Home_Image/Color_Background.png";
 import Regular_Cleaning from "./Home_Image/Regular_Cleaning.png";
@@ -49,7 +49,7 @@ import blueDot from "./blueDot.svg"
 import calender from "./Calender.svg"
 import Clock from "./Clock.svg"
 import location from "./Location.svg"
-import  Delete  from "./Delete.svg";
+import Delete from "./Delete.svg";
 import eye from "./Eye.svg"
 import print from "./Print.svg"
 import Edit from "./Edit.svg"
@@ -260,7 +260,7 @@ export const Subscription = [
 ];
 
 
- export const data= [
+export const data = [
   {
     id: 1,
     name: "John Martinez",

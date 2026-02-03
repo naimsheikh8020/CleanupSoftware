@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUser } from "@/redux/features/auth/authSlice";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { Label } from "@/Components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import { Camera, User } from "lucide-react";
 import { toast } from "sonner";
 import type { RootState } from "@/redux/store";

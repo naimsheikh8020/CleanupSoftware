@@ -1,8 +1,8 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/Components/ui/dialog";
 import type { Employee } from "@/Types/Types";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/Components/ui/button";
+import { Input } from "@/Components/ui/input";
+import { Label } from "@/Components/ui/label";
 import { useUpdateEmployeeMutation } from "@/redux/features/admin/users/employee.api";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

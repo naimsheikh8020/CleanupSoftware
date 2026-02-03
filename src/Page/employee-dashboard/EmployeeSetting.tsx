@@ -5,9 +5,9 @@ import {
   useUpdateEmployeeAvatarMutation,
   useUpdateEmployeeProfileMutation,
 } from "@/redux/features/employee/setting/profilesetting.api";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { Label } from "@/Components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import { Camera, User } from "lucide-react";
 import { toast } from "sonner";
 import type { RootState } from "@/redux/store";

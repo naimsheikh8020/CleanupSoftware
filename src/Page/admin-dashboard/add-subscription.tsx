@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Loader2, Search, XCircle } from "lucide-react";
 import { Label } from "@/Components/ui/label";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/Components/ui/input";
 import {
   Select,
   SelectContent,
@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/Components/ui/select";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/Components/ui/button";
 import { toast } from "sonner";
 import { useGetregionsQuery } from "@/redux/features/admin/regions/regions.api";
 import {
@@ -20,7 +20,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/Components/ui/tooltip";
 import { useGetSearchAllEmpoloyeesQuery } from "@/redux/features/admin/users/employee.api";
 import { useGetSearchClientsQuery } from "@/redux/features/admin/users/clients.api";
 import { useGetPlansQuery } from "@/redux/features/admin/plan/plan.api";
