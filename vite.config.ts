@@ -20,8 +20,9 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 6868,
     allowedHosts: [
-      'college.checkall.org',
-      'localhost',
+      'checkall.org',
+      'www.checkall.org',
+      'api.checkall.org',
       '127.0.0.1'
     ]
   },
