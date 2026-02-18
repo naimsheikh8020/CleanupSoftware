@@ -12,7 +12,7 @@ A modern, scalable **Admin Dashboard** built with **React, TypeScript, Redux Too
 
 ## 🔑 Demo Login Credentials
 
-Email: admin@gmail.com
+Email: cleanup.co.sa@gmail.com
 Password: Cl@@fndf123
 
 markdown
