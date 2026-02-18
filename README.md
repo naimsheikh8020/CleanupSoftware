@@ -13,7 +13,7 @@ A modern, scalable **Admin Dashboard** built with **React, TypeScript, Redux Too
 ## 🔑 Demo Login Credentials
 
 Email: admin@gmail.com
-Password: 123
+Password: Cl@@fndf123
 
 markdown
 Copy code
